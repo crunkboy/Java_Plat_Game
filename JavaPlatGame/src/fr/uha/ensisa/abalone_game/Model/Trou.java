@@ -4,31 +4,37 @@ package fr.uha.ensisa.abalone_game.Model;
 import java.awt.Point;
 
 public class Trou{
-	private static int num=0;
+	private static int num=0;						////compteur d'attribution d'idBoule (ie Boule.cpteur)
 	private int idTrou; 
-	private boolean occupied;
-	private Boule boule;
-	public Trou[] voisinage=new Trou[6];			//6 directions permises pour le déplacement d'un pion
+	private boolean occupied;						//Occupation du trou par une boule
+	private Boule boule;							//boule occupant le trou (si la boule n'est pas)
+	public Trou[] voisinage=new Trou[6];			//6 directions permises pour le déplacement d'une boule
 	private int poid;								//Un poids qui permettra d'évaluer un coup par rapport à un autre
 	private boolean bord;							//pour savoir s'il s'agit d'une cellule bord de l'hexagone
 	private Point PositionTrou;						//coordonnée du trou
 
+	
 	public Trou(boolean a)
 	{
 		super();
 		bord=a;
 		
 	}
+	
 	public Trou()
 	{
 		idTrou=num;
-		num++;
-		occupied=false;
+		num++;										//unicité de l'id
+		occupied=false;								//initialement non occupé
 	}
+	
+	
+	// Getters and Setters
 	public Boule getBoule()
 	{
 		return boule;
 	}
+	
 	public void setBoule(Boule b)
 	{
 		if(b!=null)
@@ -44,7 +50,8 @@ public class Trou{
 	{
 		return occupied;
 	}
-	public void setOccupied(boolean a)                //but:changer le statu du trou avec ue valeur
+	
+	public void setOccupied(boolean a)                //changer l'etat d'ocupation  du trou avec une valeur
 	{
 		occupied=a;
 	}
@@ -54,33 +61,42 @@ public class Trou{
 	{
 		this.voisinage = voisinage;
 	}
+	
 	public boolean getBord() {             //on veut savoir si le trou est un bord ou pas
 		return bord;
 	}
+	
 	public void setBord(boolean bord) {
 		this.bord = bord;
 	}
+	
 	public int getPoid() {
 		return poid;
 	}
+	
 	public void setPoid(int poid) {
 		this.poid = poid;
 	}
+	
 	public static int getNum() {
 		return num;
 	}
+	
 	public static void setNum(int num) {
 		Trou.num = num;
 	}
+	
 	public int getIdTrou() {
 		return idTrou;
 	}
+	
 	public void setIdTrou(int idTrou) {
 		this.idTrou = idTrou;
 	}
 	/**
 	 * @return le positionTrou
 	 */
+	
 	public Point getPositionTrou() {
 		return PositionTrou;
 	}

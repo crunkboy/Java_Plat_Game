@@ -6,13 +6,13 @@ import java.awt.Point;
 
 public class Boule {
 	
-	private Color couleur;
+	private Color couleur;				//couleur de la boule
 	private boolean sortie=false;       //si la boule est toujours dans l'hexagone ou pas
-	private Joueur joueur;
+	private Joueur joueur;				
 	private Trou trou;
-	private static int cpteur=0;
-	private int idBoule;
-	private Point PositionBoule;
+	private static int cpteur=0;		//compteur d'attribution d'idBoule
+	private int idBoule;				//identifiant de la boule (unique)
+	private Point PositionBoule;		//emplacement de la boule (trou sur lequel elle se trouve)
 	
 	public Boule(Trou a)
 	{
@@ -23,26 +23,16 @@ public class Boule {
 		PositionBoule=a.getPosition();
 		trou.setBoule(this);
 	}
-    public boolean getEtat()    
-    {
-		return sortie;
-	}
-    
-   
-     public void setEtat(boolean j)    
-    {
-		sortie=j;
-	}
-    
-    public void modifyEtat()           //test si le trou dan lekel on è è un bord
+	
+	public void modifyEtat()           //test si le trou dan lequel se trouve la boule est un bord
     {
 		if(trou.getBord())  
 			{
-			   setEtat(true);
+			setSortie(true);			//boule sortie
 			}                            
 		else 
 			{
-			setEtat(false);
+			setSortie(false);			//boule toujours en jeu
 			this.setPosition(trou.getPosition());
 			}
 			//joueur.getTable().modifyState();
@@ -50,17 +40,30 @@ public class Boule {
 	}
     
    
+	
+	// Getters et Setters
+	
+    public boolean getSortie()    		//ex getEtat
+    {
+		return sortie;
+	}
+    
+   
+     public void setSortie(boolean j)   //ex setEtat  
+    {
+		sortie=j;
+	}
     
    
     public void setTrou(Trou a)    //but:affecter un trou a la  boule
     {     
     			
-    			trou.setOccupied(false);
-    			//trou.setBoule(null);		//on prévient aux trou dans lequel il était qu'il n'est plus occupé
+    			trou.setOccupied(false);	//L'ancien trou n'est plus oocupé
+    			//trou.setBoule(null);		
     			
 	    		trou=a;
 	    		trou.setBoule(this);
-	    		modifyEtat(); //en principe on teste si le trou est un bord alors on change l'attribt sortie d la boul
+	    		modifyEtat(); //en principe on teste si le trou est un bord pour mettre à jour l'attribut sortie d la boul
      }
     
     
@@ -70,9 +73,7 @@ public class Boule {
 	}
 	public void setIdBoule(int idBoule) {
 		this.idBoule = idBoule;
-	}
-    
-    
+	} 
     public Trou getTrou()
     {
     	return trou;
@@ -96,9 +97,6 @@ public class Boule {
     {
     	return couleur;
     }
-    
-
-	
 	public Point getPosition() {
 		return PositionBoule;
 	}
