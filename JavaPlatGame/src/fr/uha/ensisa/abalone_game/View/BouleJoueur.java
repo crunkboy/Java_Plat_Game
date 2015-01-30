@@ -1,4 +1,4 @@
-package views;
+package fr.uha.ensisa.abalone_game.View;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -8,7 +8,7 @@ import java.awt.Point;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
-import com.abalone_jeu.Controleur.Controle;
+import fr.uha.ensisa.abalone_game.Controller.Controle;
 
 @SuppressWarnings("serial")
 public class BouleJoueur extends JButton {
