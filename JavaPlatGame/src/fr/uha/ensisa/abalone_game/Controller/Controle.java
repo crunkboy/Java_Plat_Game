@@ -360,13 +360,13 @@ public class Controle implements KeyListener,MouseListener,ActionListener {
 	public static void main(String[] args)
 	{
 	
-		/*try {
-			UIManager.setLookAndFeel("com.jtattoo.plaf.texture.TextureLookAndFeel");
+		try {
+			UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
 			} catch (ClassNotFoundException | InstantiationException
 			| IllegalAccessException
 			| UnsupportedLookAndFeelException e1) {
 			e1.printStackTrace();};
-			*/
+			
 	EventQueue.invokeLater(new Runnable(){
 			public void run()
 			{
