@@ -35,8 +35,8 @@ public class Boule {
 			setSortie(false);			//boule toujours en jeu
 			this.setPosition(trou.getPosition());
 			}
-			//joueur.getTable().modifyState();
-			//joueur.getTable().NotifyObserver(joueur.getTable().getState(),getEtat(), getPosition(), getIdBoule());
+			joueur.getTable().modifyState();
+			joueur.getTable().NotifyObserver(joueur.getTable().getState(),getSortie(), getPosition(), getIdBoule());
 	}
     
    

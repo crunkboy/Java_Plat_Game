@@ -1,5 +1,4 @@
 package fr.uha.ensisa.abalone_game.View;
-
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -12,7 +11,6 @@ import fr.uha.ensisa.abalone_game.Controller.Controle;
 
 @SuppressWarnings("serial")
 public class BouleJoueur extends JButton {
-	//cpteur is used for assigning the id to each of the marbels placed on the board it also acts a counter to the number of marbles on the board 
 	private static int cpteur=0;
 	public int id;
 	public Point point;
@@ -32,7 +30,7 @@ public class BouleJoueur extends JButton {
 	}
 
 	
-	//constructor for the marbles, called at the time for populating the board
+	
 	public BouleJoueur(Point point,String img){
 		icon = new ImageIcon(new ImageIcon(getClass().getResource(img)).getImage().getScaledInstance(32, 32, Image.SCALE_DEFAULT));
 		id=cpteur;
