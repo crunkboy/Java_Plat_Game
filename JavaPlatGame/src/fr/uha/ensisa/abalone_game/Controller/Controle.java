@@ -28,6 +28,7 @@ import fr.uha.ensisa.abalone_game.Model.Joueur;
 import fr.uha.ensisa.abalone_game.Model.Partie;
 import fr.uha.ensisa.abalone_game.Model.Trou;
 
+//the controller class with 3 types of listeners, for keystrokes, Mouseevents and button actions
 public class Controle implements KeyListener,MouseListener,ActionListener {
 
 	private static Partie a;
@@ -41,7 +42,8 @@ public class Controle implements KeyListener,MouseListener,ActionListener {
 	{	
 		
 	}
-
+	
+	//events associated with ball movements using keypress, 
 	@Override
 	public void keyReleased(KeyEvent arg0) {
 	

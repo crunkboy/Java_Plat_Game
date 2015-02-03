@@ -139,7 +139,7 @@ public class Hexagone implements Observable {
 				if(i==2)
 				{
 					a=i+1;
-					b=j+3;
+					b=j+3;  //to make sure that only 3 balls are placed in the third row
 					bouleJoueur2[i][j]=new Boule(toute[a][b]);
 				}
 				
@@ -162,7 +162,7 @@ public class Hexagone implements Observable {
 				if(i==2)
 				{
 					a=9-i;
-					b=j+3;
+					b=j+3; // same logic as above, just the calculations are different 
 					bouleJoueur1[i][j]=new Boule(toute[a][b]);
 				}
 				
@@ -256,7 +256,7 @@ public class Hexagone implements Observable {
 		joueurs[0].modifyNBout();
 		joueurs[1].modifyNBout();
 		
-		if(joueurs[0].getNBout()==6 || joueurs[1].getNBout()==6)
+		if(joueurs[0].getNBout()==6 || joueurs[1].getNBout()==6) //if the number of balls displaced from the board is equal to 6, the game has ended
 		{
 			partieEnd=true;
 		}
