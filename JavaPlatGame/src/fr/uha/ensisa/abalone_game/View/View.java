@@ -51,7 +51,7 @@ public class View extends JFrame implements Observateur{
 	public ImageIcon pause = new ImageIcon(new ImageIcon(getClass().getResource("/fr/uha/ensisa/abalone_game/Resources/pause.png")).getImage().getScaledInstance(30,20, Image.SCALE_DEFAULT));
 	private JMenuBar menuBar;
 	private JMenu mnNewMenu;
-	private JMenuItem mntmSauvegarde;
+//	private JMenuItem mntmSauvegarde;
 	private JMenu mnNouvellePartie;
 	private JMenuItem mntmHumainVsHumain;
 	private JMenu mnNewMenu_2;
@@ -61,7 +61,7 @@ public class View extends JFrame implements Observateur{
 	private JMenuItem mntmNewMenuItem_3;
 	private JMenuItem mntmNewMenuItem_4;
 	private JMenuItem mntmNewMenuItem_5;
-	private JMenuItem mntmChargerPartie;
+	//private JMenuItem mntmChargerPartie;
 	private JMenuItem mntmQuitter;
 	private JMenu mnAPropos;
 	private JMenuItem mntmRgles;
@@ -107,12 +107,12 @@ private RoundButton [] j2={new RoundButton("/fr/uha/ensisa/abalone_game/Resource
 		mnNewMenu = new JMenu("Jeu");
 		menuBar.add(mnNewMenu);
 		
-		mntmSauvegarde = new JMenuItem("Sauvegarder la Partie");
-		mntmSauvegarde.setAccelerator(KeyStroke.getKeyStroke
-				(KeyEvent.VK_S, InputEvent.CTRL_DOWN_MASK));
-		mntmSauvegarde.setIcon(new ImageIcon(getClass().getResource("/fr/uha/ensisa/abalone_game/Resources/disc.png")));
-		 mntmSauvegarde.addActionListener(new Controle());
-		 
+//		mntmSauvegarde = new JMenuItem("Sauvegarder la Partie");
+//		mntmSauvegarde.setAccelerator(KeyStroke.getKeyStroke
+//				(KeyEvent.VK_S, InputEvent.CTRL_DOWN_MASK));
+//		mntmSauvegarde.setIcon(new ImageIcon(getClass().getResource("/fr/uha/ensisa/abalone_game/Resources/disc.png")));
+//		 mntmSauvegarde.addActionListener(new Controle());
+//		 
 		
 		mnNouvellePartie = new JMenu("Nouvelle Partie");
 		mnNouvellePartie.setIcon(new ImageIcon(View.class.getResource("/fr/uha/ensisa/abalone_game/Resources/manette-jeu-jeux-forfait-icone-6110-16.png")));
@@ -122,44 +122,45 @@ private RoundButton [] j2={new RoundButton("/fr/uha/ensisa/abalone_game/Resource
 		mnNouvellePartie.add(mntmHumainVsHumain);
 		mntmHumainVsHumain.setIcon(new ImageIcon(getClass().getResource("/fr/uha/ensisa/abalone_game/Resources/users.png")));
 		
-		mnNewMenu_2 = new JMenu("Humain vs Machine");
-		mnNouvellePartie.add(mnNewMenu_2);
-		mnNewMenu_2.setIcon(new ImageIcon(getClass().getResource("/fr/uha/ensisa/abalone_game/Resources/user.png")));
+//		mnNewMenu_2 = new JMenu("Humain vs Machine");
+//		mnNouvellePartie.add(mnNewMenu_2);
+//		mnNewMenu_2.setIcon(new ImageIcon(getClass().getResource("/fr/uha/ensisa/abalone_game/Resources/user.png")));
+//		
+//		mntmNewMenuItem = new JMenuItem("Niveau 1");
+//		mntmNewMenuItem.addActionListener(new Controle());
+//		mnNewMenu_2.add(mntmNewMenuItem);
+//		
+//		mntmNewMenuItem_1 = new JMenuItem("Niveau 2");
+//		mntmNewMenuItem_1.addActionListener(new Controle());
+//		mnNewMenu_2.add(mntmNewMenuItem_1);
+//		
+//		mntmNewMenuItem_2=new JMenuItem("Niveau 3");
+//		mntmNewMenuItem_2.addActionListener(new Controle());
+//		mnNewMenu_2.add(mntmNewMenuItem_2);
+//		
+//		mntmNewMenuItem_3=new JMenuItem("Niveau 4");
+//		mntmNewMenuItem_3.addActionListener(new Controle());
+//		mnNewMenu_2.add(mntmNewMenuItem_3);
+//		
+//		mntmNewMenuItem_4=new JMenuItem("Niveau 5");
+//
+//		mntmNewMenuItem_4.addActionListener(new Controle());
+//		mnNewMenu_2.add(mntmNewMenuItem_4);
+//		
+//		mntmNewMenuItem_5=new JMenuItem("Niveau 6");
+//		mntmNewMenuItem_5.addActionListener(new Controle());
+//		mnNewMenu_2.add(mntmNewMenuItem_5);
+//		
+//		mntmHumainVsHumain.addActionListener(new Controle());
 		
-		mntmNewMenuItem = new JMenuItem("Niveau 1");
-		mntmNewMenuItem.addActionListener(new Controle());
-		mnNewMenu_2.add(mntmNewMenuItem);
+//		mnNewMenu.add(mntmSauvegarde);
 		
-		mntmNewMenuItem_1 = new JMenuItem("Niveau 2");
-		mntmNewMenuItem_1.addActionListener(new Controle());
-		mnNewMenu_2.add(mntmNewMenuItem_1);
-		
-		mntmNewMenuItem_2=new JMenuItem("Niveau 3");
-		mntmNewMenuItem_2.addActionListener(new Controle());
-		mnNewMenu_2.add(mntmNewMenuItem_2);
-		
-		mntmNewMenuItem_3=new JMenuItem("Niveau 4");
-		mntmNewMenuItem_3.addActionListener(new Controle());
-		mnNewMenu_2.add(mntmNewMenuItem_3);
-		
-		mntmNewMenuItem_4=new JMenuItem("Niveau 5");
-
-		mntmNewMenuItem_4.addActionListener(new Controle());
-		mnNewMenu_2.add(mntmNewMenuItem_4);
-		
-		mntmNewMenuItem_5=new JMenuItem("Niveau 6");
-		mntmNewMenuItem_5.addActionListener(new Controle());
-		mnNewMenu_2.add(mntmNewMenuItem_5);
-		
-		mntmHumainVsHumain.addActionListener(new Controle());
-		mnNewMenu.add(mntmSauvegarde);
-		
-		mntmChargerPartie = new JMenuItem("Charger une Partie");
-		mntmChargerPartie.setAccelerator(KeyStroke.getKeyStroke
-				(KeyEvent.VK_O, InputEvent.CTRL_DOWN_MASK));
-		mntmChargerPartie.setIcon(new ImageIcon(getClass().getResource("/fr/uha/ensisa/abalone_game/Resources/loading_throbber_icon.png")));
-		mntmChargerPartie.addActionListener(new Controle());
-		mnNewMenu.add(mntmChargerPartie);
+//		mntmChargerPartie = new JMenuItem("Charger une Partie");
+//		mntmChargerPartie.setAccelerator(KeyStroke.getKeyStroke
+//				(KeyEvent.VK_O, InputEvent.CTRL_DOWN_MASK));
+//		mntmChargerPartie.setIcon(new ImageIcon(getClass().getResource("/fr/uha/ensisa/abalone_game/Resources/loading_throbber_icon.png")));
+//		mntmChargerPartie.addActionListener(new Controle());
+//		mnNewMenu.add(mntmChargerPartie);
 		
 		mntmQuitter = new JMenuItem("Quitter");
 		mntmQuitter.setAccelerator(KeyStroke.getKeyStroke

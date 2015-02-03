@@ -33,9 +33,9 @@ public class Controle implements KeyListener,MouseListener,ActionListener {
 	private static Partie a;
 	private boolean b=false;
  	private static View a1;
- 	private static int []jou1=new int[2];
- 	private int [][] j1 = new int[14][2];
- 	private int [][] j2 = new int[14][2];
+ 	//private static int []jou1=new int[2];
+ 	//private int [][] j1 = new int[14][2];
+ 	//private int [][] j2 = new int[14][2];
  	//private int directionCLIC;
 	public void keyPressed(KeyEvent e)
 	{	
@@ -89,7 +89,7 @@ public class Controle implements KeyListener,MouseListener,ActionListener {
 			//rendre toute les bouleJoueur2 inactif et changer de joueur
 			a.table.jouer();
 			a.table.setNbSelect(0);
-			iAgame();
+			//iAgame();
 			//System.out.println("deplacement effectué");
 		}
 		//sinon essayer une autre direction
@@ -103,7 +103,7 @@ public class Controle implements KeyListener,MouseListener,ActionListener {
 			Joueur.deplacer(a.table.getPion().get(1),direction);
 			a.table.jouer();
 			a.table.setNbSelect(0);
-			iAgame();
+			//iAgame();
 			//System.out.println("deplacement latéral possible pour ces 2 pion");
 		}
 	}
@@ -117,7 +117,7 @@ public class Controle implements KeyListener,MouseListener,ActionListener {
 			Joueur.deplacer(a.table.getPion().get(2),direction);
 			a.table.jouer();
 			a.table.setNbSelect(0);
-			iAgame();
+			//iAgame();
 			//System.out.println("deplacement latéral possible pour ces 3 pion");
 		}
 	}
@@ -143,19 +143,19 @@ public class Controle implements KeyListener,MouseListener,ActionListener {
 	}
 	}
 		
-	public void iAgame()
-	{
-		if(a.table.getState()==false && a.j2.isIaJoueur() && a.table.getTour().equals(a.j2))
-		{
-			a.j2.calculCoup();
-			Joueur.deplacer(Joueur.bP,Joueur.bD);				
-			b=false;
-			
-			Joueur.bD=-20;
-			Joueur.bP=null;
-			a.table.jouer();
-		}
-	}
+//	public void iAgame()
+//	{
+//		if(a.table.getState()==false && a.j2.isIaJoueur() && a.table.getTour().equals(a.j2))
+//		{
+//			a.j2.calculCoup();
+//			Joueur.deplacer(Joueur.bP,Joueur.bD);				
+//			b=false;
+//			
+//			Joueur.bD=-20;
+//			Joueur.bP=null;
+//			a.table.jouer();
+//		}
+//	}
 
 	@Override
 	public void keyTyped(KeyEvent arg0) {
@@ -169,7 +169,9 @@ public class Controle implements KeyListener,MouseListener,ActionListener {
 		{
 			a.j1.select(c);
 		}
-		else if((a!=null  && a.table.getState()==false) &&(a.table.getTour().equals(a.j2) && a.j2.isIaJoueur()==false && c<14)&& arg0.getButton()==1)
+		else if((a!=null  && a.table.getState()==false) &&(a.table.getTour().equals(a.j2) && c<14)&& arg0.getButton()==1)
+		//else if((a!=null  && a.table.getState()==false) &&(a.table.getTour().equals(a.j2) && a.j2.isIaJoueur()==false && c<14)&& arg0.getButton()==1)
+
 		{
 			a.j2.select(c);
 		}
@@ -325,6 +327,7 @@ public class Controle implements KeyListener,MouseListener,ActionListener {
 
 		break;
 		
+		/*
 		case"Sauvegarder la Partie"://System.out.println("Sauvegarder la Partie");
 		
 		if(a!=null)
@@ -343,10 +346,11 @@ public class Controle implements KeyListener,MouseListener,ActionListener {
 				
 		//System.out.println("Chargement terminé");
 		break;
+		*/
 		
 		case"Quitter"://System.out.println("Quitter");
 		if(a!=null)
-		save();
+		//save();
 		System.exit(0);
 		
 		break;
@@ -381,7 +385,7 @@ public class Controle implements KeyListener,MouseListener,ActionListener {
 
 	}
 	
-	
+	/*
 	public void save()
 	{
 		int i=0;
@@ -427,9 +431,9 @@ public class Controle implements KeyListener,MouseListener,ActionListener {
 			}
 		}
 		write_Fichier(j1,j2,jou1,"fich.txt");
-	}
+	}*/
 	
-	public void load()
+	/*public void load()
 	{
 		
 		read_Fichier(j1, j2, jou1,"fich.txt");
@@ -483,10 +487,10 @@ public class Controle implements KeyListener,MouseListener,ActionListener {
 			}
 		}
 		
-	}
+	}*/
 	
 	
-	
+	/*
 	public void write_Fichier(int [][] joueur_1, int [][] joueur_2, int [] j_1, String nomFichier){
 		File f= null;  //Pour la premiere ecriture si le fichier n'existe pas cette ligne permet de le créer sinon elle écrit
 		                                   //directement dans le fichier
@@ -546,5 +550,5 @@ public class Controle implements KeyListener,MouseListener,ActionListener {
 		    }
 
 	}
+	*/
 }
-

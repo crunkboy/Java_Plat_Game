@@ -424,38 +424,39 @@ public class Joueur implements Cloneable {
 
 
 
-public void calculCoup()
-{
-	int n=(this.niveau);
-	meilleurCoups(n);
-	if(fP!=-20 && bTD==-1)
-	{
-		Trou s=bP.getTrou().voisinage[dF];
-		if(fP==2)
-		{
-			tableDjeu.joue(s.getBoule(),bD,bTD);
-			fP=-20;
-		}
-		else if(fP==3)
-		{
-			
-			tableDjeu.joue(s.getBoule(),bD,bTD);
-			tableDjeu.joue(s.voisinage[dF].getBoule(),bD,bTD);
-			fP=-20;
-		}
-			
-	}
-
-
-}
+//public void calculCoup()
+//{
+//	int n=(this.niveau);
+//	meilleurCoups(n);
+//	if(fP!=-20 && bTD==-1)
+//	{
+//		Trou s=bP.getTrou().voisinage[dF];
+//		if(fP==2)
+//		{
+//			tableDjeu.joue(s.getBoule(),bD,bTD);
+//			fP=-20;
+//		}
+//		else if(fP==3)
+//		{
+//			
+//			tableDjeu.joue(s.getBoule(),bD,bTD);
+//			tableDjeu.joue(s.voisinage[dF].getBoule(),bD,bTD);
+//			fP=-20;
+//		}
+//			
+//	}
+//
+//
+//}
 
 public Boule getBouleAt(int i,int j)
 {
 	return mesBoules[i][j];
 }
-public boolean isIaJoueur() {
-	return iaJoueur;
-}
+
+//public boolean isIaJoueur() {
+//	return iaJoueur;
+//}
 
 
 
@@ -551,8 +552,8 @@ public static boolean  deplacer(Boule b,int direction)
 	case -7:System.out.println("je joue la boule "+b.getIdBoule()+" se trouvant dans le trou "+b.getTrou().getIdTrou()+" en manger_2_1");tableDjeu.règle.manger_2_1(b,direction);break;
 	case -8:System.out.println("je joue la boule "+b.getIdBoule()+" se trouvant dans le trou "+b.getTrou().getIdTrou()+" en manger_3_1");tableDjeu.règle.manger_3_1(b,direction);break;
 	case -9:System.out.println("je joue la boule "+b.getIdBoule()+" se trouvant dans le trou "+b.getTrou().getIdTrou()+" en manger_3_2");tableDjeu.règle.manger_3_2(b,direction);break;
-	case -20:tableDjeu.règle.Bloquer();/*System.out.println("bloquer")*/;done=false;break;
-	default: tableDjeu.règle.Bloquer();/*System.out.println("bloquer")*/;done=false;break;
+	case -20:tableDjeu.règle.Bloquer();System.out.println("bloquer");done=false;break;
+	default: tableDjeu.règle.Bloquer();System.out.println("bloquer");done=false;break;
 	}
 			
 	return done;

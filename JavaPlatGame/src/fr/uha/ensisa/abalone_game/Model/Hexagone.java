@@ -228,17 +228,17 @@ public class Hexagone implements Observable {
 	//initialise le poids de chaque trou
 	public void initPoids()
 	{
-		int N=100;
-		
-		for(int v=0;v<6;v++)
-		{
-			for(int c=v;c<toute.length-v;c++)
-			{
-				for(int k=v;k<toute[c].length-v;k++)
-					toute[c][k].setPoid(N*v);
-			}
-			
-		}
+//		int N=100;
+//		
+//		for(int v=0;v<6;v++)
+//		{
+//			for(int c=v;c<toute.length-v;c++)
+//			{
+//				for(int k=v;k<toute[c].length-v;k++)
+//					toute[c][k].setPoid(N*v);
+//			}
+//			
+//		}
 		
 	}
 	
