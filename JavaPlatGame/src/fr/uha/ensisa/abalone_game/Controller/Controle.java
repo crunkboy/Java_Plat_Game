@@ -105,7 +105,7 @@ public class Controle implements KeyListener,MouseListener,ActionListener {
 			Joueur.deplacer(a.table.getPion().get(1),direction);
 			a.table.jouer();
 			a.table.setNbSelect(0);
-			//iAgame();
+			iAgame();
 			//System.out.println("deplacement latéral possible pour ces 2 pion");
 		}
 	}
@@ -119,7 +119,7 @@ public class Controle implements KeyListener,MouseListener,ActionListener {
 			Joueur.deplacer(a.table.getPion().get(2),direction);
 			a.table.jouer();
 			a.table.setNbSelect(0);
-			//iAgame();
+			iAgame();
 			//System.out.println("deplacement latéral possible pour ces 3 pion");
 		}
 	}
@@ -145,19 +145,19 @@ public class Controle implements KeyListener,MouseListener,ActionListener {
 	}
 	}
 		
-//	public void iAgame()
-//	{
-//		if(a.table.getState()==false && a.j2.isIaJoueur() && a.table.getTour().equals(a.j2))
-//		{
-//			a.j2.calculCoup();
-//			Joueur.deplacer(Joueur.bP,Joueur.bD);				
-//			b=false;
-//			
-//			Joueur.bD=-20;
-//			Joueur.bP=null;
-//			a.table.jouer();
-//		}
-//	}
+	public void iAgame()
+	{
+		if(a.table.getState()==false && a.j2.isIaJoueur() && a.table.getTour().equals(a.j2))
+		{
+			a.j2.calculCoup();
+			Joueur.deplacer(Joueur.bP,Joueur.bD);				
+			b=false;
+			
+			Joueur.bD=-20;
+			Joueur.bP=null;
+			a.table.jouer();
+		}
+	}
 
 	@Override
 	public void keyTyped(KeyEvent arg0) {
@@ -351,7 +351,7 @@ public class Controle implements KeyListener,MouseListener,ActionListener {
 		*/
 		
 		case"Quitter"://System.out.println("Quitter");
-		if(a!=null)
+		//if(a!=null)
 		//save();
 		System.exit(0);
 		

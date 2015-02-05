@@ -424,39 +424,39 @@ public class Joueur implements Cloneable {
 
 
 
-//public void calculCoup()
-//{
-//	int n=(this.niveau);
-//	meilleurCoups(n);
-//	if(fP!=-20 && bTD==-1)
-//	{
-//		Trou s=bP.getTrou().voisinage[dF];
-//		if(fP==2)
-//		{
-//			tableDjeu.joue(s.getBoule(),bD,bTD);
-//			fP=-20;
-//		}
-//		else if(fP==3)
-//		{
-//			
-//			tableDjeu.joue(s.getBoule(),bD,bTD);
-//			tableDjeu.joue(s.voisinage[dF].getBoule(),bD,bTD);
-//			fP=-20;
-//		}
-//			
-//	}
-//
-//
-//}
+public void calculCoup()
+{
+	int n=(this.niveau);
+	meilleurCoups(n);
+	if(fP!=-20 && bTD==-1)
+	{
+		Trou s=bP.getTrou().voisinage[dF];
+		if(fP==2)
+		{
+			tableDjeu.joue(s.getBoule(),bD,bTD);
+			fP=-20;
+		}
+		else if(fP==3)
+		{
+			
+			tableDjeu.joue(s.getBoule(),bD,bTD);
+			tableDjeu.joue(s.voisinage[dF].getBoule(),bD,bTD);
+			fP=-20;
+		}
+			
+	}
+
+
+}
 
 public Boule getBouleAt(int i,int j)
 {
 	return mesBoules[i][j];
 }
 
-//public boolean isIaJoueur() {
-//	return iaJoueur;
-//}
+public boolean isIaJoueur() {
+	return iaJoueur;
+}
 
 
 

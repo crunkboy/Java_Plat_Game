@@ -61,7 +61,7 @@ public class View extends JFrame implements Observateur{
 	private JMenuItem mntmNewMenuItem_3;
 	private JMenuItem mntmNewMenuItem_4;
 	private JMenuItem mntmNewMenuItem_5;
-	//private JMenuItem mntmChargerPartie;
+//	private JMenuItem mntmChargerPartie;
 	private JMenuItem mntmQuitter;
 	private JMenu mnAPropos;
 	private JMenuItem mntmRgles;
@@ -112,7 +112,7 @@ private RoundButton [] j2={new RoundButton("/fr/uha/ensisa/abalone_game/Resource
 //				(KeyEvent.VK_S, InputEvent.CTRL_DOWN_MASK));
 //		mntmSauvegarde.setIcon(new ImageIcon(getClass().getResource("/fr/uha/ensisa/abalone_game/Resources/disc.png")));
 //		 mntmSauvegarde.addActionListener(new Controle());
-//		 
+		 
 		
 		mnNouvellePartie = new JMenu("Nouvelle Partie");
 		mnNouvellePartie.setIcon(new ImageIcon(View.class.getResource("/fr/uha/ensisa/abalone_game/Resources/manette-jeu-jeux-forfait-icone-6110-16.png")));
@@ -150,11 +150,11 @@ private RoundButton [] j2={new RoundButton("/fr/uha/ensisa/abalone_game/Resource
 //		mntmNewMenuItem_5=new JMenuItem("Niveau 6");
 //		mntmNewMenuItem_5.addActionListener(new Controle());
 //		mnNewMenu_2.add(mntmNewMenuItem_5);
-//		
-//		mntmHumainVsHumain.addActionListener(new Controle());
+		
+		mntmHumainVsHumain.addActionListener(new Controle());
 		
 //		mnNewMenu.add(mntmSauvegarde);
-		
+//		
 //		mntmChargerPartie = new JMenuItem("Charger une Partie");
 //		mntmChargerPartie.setAccelerator(KeyStroke.getKeyStroke
 //				(KeyEvent.VK_O, InputEvent.CTRL_DOWN_MASK));
