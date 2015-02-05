@@ -118,9 +118,11 @@ private RoundButton [] j2={new RoundButton("/fr/uha/ensisa/abalone_game/Resource
 		mnNouvellePartie.setIcon(new ImageIcon(View.class.getResource("/fr/uha/ensisa/abalone_game/Resources/manette-jeu-jeux-forfait-icone-6110-16.png")));
 		mnNewMenu.add(mnNouvellePartie);
 		
-		 mntmHumainVsHumain = new JMenuItem("Humain vs Humain");
+		mntmHumainVsHumain = new JMenuItem("Humain vs Humain");
 		mnNouvellePartie.add(mntmHumainVsHumain);
 		mntmHumainVsHumain.setIcon(new ImageIcon(getClass().getResource("/fr/uha/ensisa/abalone_game/Resources/users.png")));
+		
+		mntmHumainVsHumain.addActionListener(new Controle());
 		
 //		mnNewMenu_2 = new JMenu("Humain vs Machine");
 //		mnNouvellePartie.add(mnNewMenu_2);
@@ -143,7 +145,6 @@ private RoundButton [] j2={new RoundButton("/fr/uha/ensisa/abalone_game/Resource
 //		mnNewMenu_2.add(mntmNewMenuItem_3);
 //		
 //		mntmNewMenuItem_4=new JMenuItem("Niveau 5");
-//
 //		mntmNewMenuItem_4.addActionListener(new Controle());
 //		mnNewMenu_2.add(mntmNewMenuItem_4);
 //		
@@ -151,7 +152,7 @@ private RoundButton [] j2={new RoundButton("/fr/uha/ensisa/abalone_game/Resource
 //		mntmNewMenuItem_5.addActionListener(new Controle());
 //		mnNewMenu_2.add(mntmNewMenuItem_5);
 		
-		mntmHumainVsHumain.addActionListener(new Controle());
+		
 		
 //		mnNewMenu.add(mntmSauvegarde);
 //		
@@ -168,11 +169,10 @@ private RoundButton [] j2={new RoundButton("/fr/uha/ensisa/abalone_game/Resource
 		
 		mntmQuitter.setIcon(new ImageIcon(View.class.getResource("/fr/uha/ensisa/abalone_game/Resources/k.png")));
 		mntmQuitter.addActionListener(new Controle());
-
-			
 		mnNewMenu.add(mntmQuitter);
 		
-		 mnAPropos = new JMenu("Aide");
+		 
+		mnAPropos = new JMenu("Aide");
 		menuBar.add(mnAPropos);
 		
 		mntmRgles = new JMenuItem("R\u00E8gles");
@@ -195,10 +195,9 @@ private RoundButton [] j2={new RoundButton("/fr/uha/ensisa/abalone_game/Resource
 		mntmAPropos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String pfe;
-        		pfe = "\t\t\tFaculté de Sciences de Kenitra (FSK)\n" +
-		               "\n\tProjet élaboré par Yoni Philippe.\n" +
-		                "Contact \n " +
-		                 "Mail: yoniphilippe@gmail.fr \n Numéro: +212606255759 ou +22670081172\n\tVersion 1.0";
+        		pfe = "\t\t\tEcole Nationale Sup\u00e9rieure d'Ing\u00e9nieurs Sud Alsace (ENSISA)\n" +
+		               "             \tProjet Platforme Java  -    Version 1.0\n\n" +
+		                "             Contact  -   " +"Mail: etudiant397@gmail.fr";
         		JOptionPane.showMessageDialog(null, pfe);
 				
 			}
