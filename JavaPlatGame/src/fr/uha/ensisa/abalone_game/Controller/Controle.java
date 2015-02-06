@@ -20,8 +20,6 @@ import java.io.PrintWriter;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-import fr.uha.ensisa.abalone_game.View.View;
-
 import fr.uha.ensisa.abalone_game.View.*;
 import fr.uha.ensisa.abalone_game.Model.Boule;
 import fr.uha.ensisa.abalone_game.Model.Joueur;
@@ -38,6 +36,9 @@ public class Controle implements KeyListener,MouseListener,ActionListener {
  	//private int [][] j1 = new int[14][2];
  	//private int [][] j2 = new int[14][2];
  	//private int directionCLIC;
+ 	
+ 	
+ 	
 	public void keyPressed(KeyEvent e)
 	{	
 		
@@ -147,7 +148,7 @@ public class Controle implements KeyListener,MouseListener,ActionListener {
 		
 	public void iAgame()
 	{
-		if(a.table.getState()==false && a.j2.isIaJoueur() && a.table.getTour().equals(a.j2))
+		if(a.table.isPartieEnd()==false && a.j2.isIaJoueur() && a.table.getTour().equals(a.j2))
 		{
 			a.j2.calculCoup();
 			Joueur.deplacer(Joueur.bP,Joueur.bD);				
@@ -164,30 +165,32 @@ public class Controle implements KeyListener,MouseListener,ActionListener {
 		
 	}
 
+	
+	// Selection des Boules
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
-		int c=a1.getEchiquier().getIDB(arg0.getSource());
-		if((a!=null && a.table.getState()==false) && (a.table.getTour().equals(a.j1) && c>=14)&& arg0.getButton()==1)
+		int c=a1.getEchiquier().getIDB(arg0.getSource()); // on récupère l'iD de la boule selectionnée
+		if((a!=null && a.table.isPartieEnd()==false) && (a.table.getTour().equals(a.j1) && c>=14)&& arg0.getButton()==1)
 		{
 			a.j1.select(c);
 		}
-		else if((a!=null  && a.table.getState()==false) &&(a.table.getTour().equals(a.j2) && c<14)&& arg0.getButton()==1)
+		else 
+		if((a!=null  && a.table.isPartieEnd()==false) && (a.table.getTour().equals(a.j2) && c<14)&& arg0.getButton()==1)
 		//else if((a!=null  && a.table.getState()==false) &&(a.table.getTour().equals(a.j2) && a.j2.isIaJoueur()==false && c<14)&& arg0.getButton()==1)
 
 		{
 			a.j2.select(c);
 		}
-		else if(arg0.getButton()==3 && a!=null && a.table.getNbSelect()>=1)
+		else if(arg0.getButton()==3 && a!=null && a.table.getNbSelect()>=1) //deselectionne la totalité des boules selectionnées
 		{
 			a.table.setNbSelect(0);
 //			System.out.println("direction="+arg0.getLocationOnScreen());
 //			System.out.println("clic="+Joueur.boulePos.get(0));
 //			directionCLIC=contain(arg0.getLocationOnScreen(),Joueur.boulePos.get(0));
 //			System.out.println(directionCLIC);
-//			//playCoups(directionCLIC);
-//			
-		}
-		
+//			//playCoups(directionCLIC);	
+			
+		}	
 	}
 	
 //	public int contain(Point a,Point b)
@@ -271,56 +274,71 @@ public class Controle implements KeyListener,MouseListener,ActionListener {
 		}
 	}
 	
-	public void level(int i)
-	{
+	
+//	public void level(int i)
+//	{
+//		
+//			a.j2.setIaJoueur(true);
+//			a.j2.setNiveau(i);
+//			a1.iaPlayer();
+//			
+//		
+//	}
+	
+	
+	//	public void level(int i)
+	//	{
+	//		
+	//			a.j2.setIaJoueur(true);
+	//			a.j2.setNiveau(i);
+	//			a1.iaPlayer();
+	//			
+	//		
+	//	}
 		
-			a.j2.setIaJoueur(true);
-			a.j2.setNiveau(i);
-			a1.iaPlayer();
-			
 		
-	}
+
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		
 		switch(arg0.getActionCommand())
 		{
 	
-		case"Niveau 1"://System.out.println("Niveau 1");
-		nouvellePartie();
-		level(1);
-		break;
-		
-		
-		case"Niveau 2"://System.out.println("Niveau 2");
-		nouvellePartie();
-		level(2);
-		
-		break;
-		
-		case"Niveau 3"://System.out.println("Niveau 2");
-			nouvellePartie();
-			level(3);
-			
-			break;
-			
-		case"Niveau 4"://System.out.println("Niveau 2");
-			nouvellePartie();
-			level(4);
-			
-			break;
-		
-		case"Niveau 5"://System.out.println("Niveau 2");
-			nouvellePartie();
-			level(5);
-			
-			break;
-			
-		case"Niveau 6"://System.out.println("Niveau 2");
-			nouvellePartie();
-			level(6);
-			
-			break;
+//		case"Niveau 1"://System.out.println("Niveau 1");
+//		nouvellePartie();
+//		level(1);
+//		break;
+//		
+//		
+//		case"Niveau 2"://System.out.println("Niveau 2");
+//		nouvellePartie();
+//		level(2);
+//		
+//		break;
+//		
+//		case"Niveau 3"://System.out.println("Niveau 2");
+//			nouvellePartie();
+//			level(3);
+//			
+//			break;
+//			
+//		case"Niveau 4"://System.out.println("Niveau 2");
+//			nouvellePartie();
+//			level(4);
+//			
+//			break;
+//		
+//		case"Niveau 5"://System.out.println("Niveau 2");
+//			nouvellePartie();
+//			level(5);
+//			
+//			break;
+//			
+//		case"Niveau 6"://System.out.println("Niveau 2");
+//			nouvellePartie();
+//			level(6);
+//			
+//			break;
 		
 		
 		case"Humain vs Humain"://System.out.println("Humain vs Humain");
@@ -360,31 +378,6 @@ public class Controle implements KeyListener,MouseListener,ActionListener {
 		
 	
 		
-	}
-
-	
-	public static void main(String[] args)
-	{
-	
-		try {
-			UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
-			} catch (ClassNotFoundException | InstantiationException
-			| IllegalAccessException
-			| UnsupportedLookAndFeelException e1) {
-			e1.printStackTrace();};
-			
-	EventQueue.invokeLater(new Runnable(){
-			public void run()
-			{
-				View window = new View();
-				a1=window;
-				window.getFrame().setVisible(true);
-				
-				
-			}
-		});
-	
-
 	}
 	
 	/*
@@ -553,4 +546,28 @@ public class Controle implements KeyListener,MouseListener,ActionListener {
 
 	}
 	*/
+	
+	public static void main(String[] args)
+	{
+	
+		try {
+			UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
+			} catch (ClassNotFoundException | InstantiationException
+			| IllegalAccessException
+			| UnsupportedLookAndFeelException e1) {
+			e1.printStackTrace();};
+			
+	EventQueue.invokeLater(new Runnable(){
+			public void run()
+			{
+				View window = new View();
+				a1=window;
+				window.getFrame().setVisible(true);
+				
+				
+			}
+		});
+	
+
+	}
 }

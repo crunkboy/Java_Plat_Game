@@ -27,7 +27,7 @@ public class Joueur implements Cloneable {
 	            //le numéro du joueur associ au pion déposé dans celle-ci.cet attribu est utile pr le trou
 	
 
-	public Boule locate(int id)
+	public Boule getBoule(int id)
 	{
 		for(int i=0;i<mesBoules.length;i++)
 			for(int j=0;j<mesBoules[i].length;j++)
@@ -48,23 +48,25 @@ public class Joueur implements Cloneable {
 		return null;
 	}
 
-	public boolean select(int id)//on ajoute le pion id dans la liste des pion selectionné si existe déja on l'a sort
+	//on ajoute le pion id dans la liste des pion selectionné si existe déja on l'a sort
+	//on ajoute la boule selectionée au boules selectionées sinon on l'a sort si elle y est deja 
+	public boolean select(int id)
 	{
-		//System.out.println(id);
-		if(locate(id)!=null && tableDjeu.nbSelect==0)
+		System.out.println("click sur boule "+id);
+		if(getBoule(id)!=null && tableDjeu.nbSelect==0)
 		{
-			if(tableDjeu.pion.contains(locate(id))) //si elle existe déja on l'a sort
+			if(tableDjeu.BoulesEnJeu.contains(getBoule(id))) //si elle existe déja on l'a sort
 				{	
-							//System.out.println("oté");
-							tableDjeu.pion.remove(locate(id));
+							System.out.println("oté");
+							tableDjeu.BoulesEnJeu.remove(getBoule(id));
 							tableDjeu.nbSelect--;
 							tableDjeu.NotifyObserver(false, id);
 							return true;
 				}
 			else		//sinon on l'ajoute
 				{
-					//System.out.println("ajouté");
-					tableDjeu.pion.add(locate(id));
+					System.out.println("ajouté");
+					tableDjeu.BoulesEnJeu.add(getBoule(id));
 					tableDjeu.nbSelect++;
 					tableDjeu.NotifyObserver(true, id);
 					return true;
@@ -72,12 +74,12 @@ public class Joueur implements Cloneable {
 		}
 			
 		//s'il y'a déja une boule et qu'on veut en selectioné pour le deplacement latérale
-		else if(locate(id)!=null && (tableDjeu.nbSelect>0 && tableDjeu.nbSelect<3) )
+		else if(getBoule(id)!=null && (tableDjeu.nbSelect>0 && tableDjeu.nbSelect<3) )
 		{
-			if(tableDjeu.pion.contains(locate(id)))
+			if(tableDjeu.BoulesEnJeu.contains(getBoule(id)))
 			{	
 						//System.out.println("oté");
-						tableDjeu.pion.remove(locate(id));
+						tableDjeu.BoulesEnJeu.remove(getBoule(id));
 						tableDjeu.nbSelect--;
 						tableDjeu.NotifyObserver(false, id);
 						return true;
@@ -85,11 +87,11 @@ public class Joueur implements Cloneable {
 			else
 			{
 				//on ajoute et on vérifie l'alignement
-				tableDjeu.pion.add(locate(id));
+				tableDjeu.BoulesEnJeu.add(getBoule(id));
 				tableDjeu.nbSelect++;
 				if(!alignement())
 				{
-					tableDjeu.pion.remove(locate(id));
+					tableDjeu.BoulesEnJeu.remove(getBoule(id));
 					tableDjeu.nbSelect--;
 					//System.out.println("les boules ne sont pas aligné ou ne sont pas du meme joueur");
 					return false;
@@ -108,10 +110,10 @@ public class Joueur implements Cloneable {
 		}
 		else if(tableDjeu.nbSelect==3)
 		{
-			if(tableDjeu.pion.contains(locate(id)))
+			if(tableDjeu.BoulesEnJeu.contains(getBoule(id)))
 			{	
 						//System.out.println("oté");
-						tableDjeu.pion.remove(locate(id));
+						tableDjeu.BoulesEnJeu.remove(getBoule(id));
 						tableDjeu.nbSelect--;
 						tableDjeu.NotifyObserver(false, id);
 						return true;
@@ -186,6 +188,9 @@ public class Joueur implements Cloneable {
     	modifyNBout();
     	return nBout;
     }
+    
+    
+    //Met à jour le nombrede boule sorties
     public void modifyNBout()
     {
     	int nb=0;
@@ -198,12 +203,8 @@ public class Joueur implements Cloneable {
     				nb++;
     			}
     		}
-    	}
-    			
-    				
-    				
+    	}		
     	nBout=nb;
-    	
     }
     
   
@@ -490,7 +491,7 @@ public boolean  alignement()
 	int direction=-1;
 		for(int j=0;j<6;j++)//la 2èm boule doit ètr dan l'un des voisin,de mm propriétair k la boule selectioné et de mm couleur
 			{
-				if((tableDjeu.pion.get(1).getTrou().equals(tableDjeu.pion.get((0)).getTrou().voisinage[j])) && (tableDjeu.pion.get(1).getColor()==tableDjeu.pion.get((0)).getColor()))
+				if((tableDjeu.BoulesEnJeu.get(1).getTrou().equals(tableDjeu.BoulesEnJeu.get((0)).getTrou().voisinage[j])) && (tableDjeu.BoulesEnJeu.get(1).getColor()==tableDjeu.BoulesEnJeu.get((0)).getColor()))
 					{
 						result=true;
 						direction=j;
@@ -502,14 +503,14 @@ public boolean  alignement()
 			result=false;
 			if(direction==0 || direction==1 || direction==2)
 				{
-					if((tableDjeu.pion.get(2).getTrou().equals(tableDjeu.pion.get((1)).getTrou().voisinage[direction])) && (tableDjeu.pion.get(2).getColor()==tableDjeu.pion.get((1)).getColor())
-						|| (tableDjeu.pion.get(2).getTrou().equals(tableDjeu.pion.get((0)).getTrou().voisinage[(direction+3)])) && (tableDjeu.pion.get(2).getColor()==tableDjeu.pion.get((0)).getColor()))
+					if((tableDjeu.BoulesEnJeu.get(2).getTrou().equals(tableDjeu.BoulesEnJeu.get((1)).getTrou().voisinage[direction])) && (tableDjeu.BoulesEnJeu.get(2).getColor()==tableDjeu.BoulesEnJeu.get((1)).getColor())
+						|| (tableDjeu.BoulesEnJeu.get(2).getTrou().equals(tableDjeu.BoulesEnJeu.get((0)).getTrou().voisinage[(direction+3)])) && (tableDjeu.BoulesEnJeu.get(2).getColor()==tableDjeu.BoulesEnJeu.get((0)).getColor()))
 					result=true;
 				}
 			else
 			{
-				if((tableDjeu.pion.get(2).getTrou().equals(tableDjeu.pion.get((1)).getTrou().voisinage[direction])) && (tableDjeu.pion.get(2).getColor()==tableDjeu.pion.get((1)).getColor())
-						|| (tableDjeu.pion.get(2).getTrou().equals(tableDjeu.pion.get((0)).getTrou().voisinage[abs(direction-3)])) && (tableDjeu.pion.get(2).getColor()==tableDjeu.pion.get((0)).getColor()))
+				if((tableDjeu.BoulesEnJeu.get(2).getTrou().equals(tableDjeu.BoulesEnJeu.get((1)).getTrou().voisinage[direction])) && (tableDjeu.BoulesEnJeu.get(2).getColor()==tableDjeu.BoulesEnJeu.get((1)).getColor())
+						|| (tableDjeu.BoulesEnJeu.get(2).getTrou().equals(tableDjeu.BoulesEnJeu.get((0)).getTrou().voisinage[abs(direction-3)])) && (tableDjeu.BoulesEnJeu.get(2).getColor()==tableDjeu.BoulesEnJeu.get((0)).getColor()))
 					result=true;
 			}
 				
@@ -520,7 +521,7 @@ public boolean  alignement()
 
 public static  boolean testFlèche2(int dir)
 {
-	for(Boule a:tableDjeu.pion)
+	for(Boule a:tableDjeu.BoulesEnJeu)
 	{
 		if(tableDjeu.règle.getDeplacement(a.getTrou(), dir)!=-1)
 			return false;

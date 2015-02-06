@@ -36,7 +36,7 @@ public class Boule {
 			this.setPosition(trou.getPosition());
 			}
 			joueur.getTable().modifyState();
-			joueur.getTable().NotifyObserver(joueur.getTable().getState(),getSortie(), getPosition(), getIdBoule());
+			joueur.getTable().NotifyObserver(joueur.getTable().isPartieEnd(),getSortie(), getPosition(), getIdBoule());
 	}
     
    

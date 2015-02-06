@@ -10,7 +10,7 @@ import fr.uha.ensisa.abalone_game.Observer.Observateur;
 public class Hexagone implements Observable {
 	private Joueur tour;
 	protected int nbSelect=0;
-	protected ArrayList<Boule> pion=new ArrayList<Boule>();
+	protected ArrayList<Boule> BoulesEnJeu=new ArrayList<Boule>();
 
 	private Joueur [] joueurs=new Joueur[2];             //les 2 joueurs
 	private Boule [][] bouleJoueur1=new Boule[3][];
@@ -73,11 +73,11 @@ public class Hexagone implements Observable {
 		this.nbSelect = nbSelect;
 		if(nbSelect==0)
 			{
-				for(Boule v:pion)
+				for(Boule v:BoulesEnJeu)
 				{
 					this.NotifyObserver(false, v.getIdBoule());		//déselectionne les boules
 				}
-				pion.removeAll(pion);
+				BoulesEnJeu.removeAll(BoulesEnJeu);
 			}
 	}
 	public Joueur getJoueurAt(int i)
@@ -243,11 +243,11 @@ public class Hexagone implements Observable {
 	}
 	
 	
-	public void setState(boolean v)             
+	public void setpartieEnd(boolean v)             
 	{
 		partieEnd=v;
 	}
-	public boolean getState()
+	public boolean isPartieEnd()
 	{
 		return partieEnd;
 	}
@@ -473,7 +473,7 @@ public class Hexagone implements Observable {
 	}
 	
 	public ArrayList<Boule> getPion() {
-		return pion;
+		return BoulesEnJeu;
 	}
 
 
