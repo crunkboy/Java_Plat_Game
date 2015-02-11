@@ -22,7 +22,7 @@ public class Coups {
 	
 	
 	
-	public int getDeplacement(Trou trou,int direction) //qui retourne le deplacement possible pour un trou et une direction
+	public int getDeplacement(Trou trou,int direction) // retourne le deplacement possible pour un trou et une direction
 	{
 
 		int etat=0,suivant=0;

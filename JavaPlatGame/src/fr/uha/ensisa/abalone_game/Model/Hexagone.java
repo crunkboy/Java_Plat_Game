@@ -10,7 +10,7 @@ import fr.uha.ensisa.abalone_game.Observer.Observateur;
 public class Hexagone implements Observable {
 	private Joueur tour;
 	protected int nbSelect=0;
-	protected ArrayList<Boule> BoulesEnJeu=new ArrayList<Boule>();
+	protected ArrayList<Boule> BoulesSelectionees=new ArrayList<Boule>();
 
 	private Joueur [] joueurs=new Joueur[2];             //les 2 joueurs
 	private Boule [][] bouleJoueur1=new Boule[3][];
@@ -73,11 +73,11 @@ public class Hexagone implements Observable {
 		this.nbSelect = nbSelect;
 		if(nbSelect==0)
 			{
-				for(Boule v:BoulesEnJeu)
+				for(Boule v:BoulesSelectionees)
 				{
 					this.NotifyObserver(false, v.getIdBoule());		//déselectionne les boules
 				}
-				BoulesEnJeu.removeAll(BoulesEnJeu);
+				BoulesSelectionees.removeAll(BoulesSelectionees);
 			}
 	}
 	public Joueur getJoueurAt(int i)
@@ -228,17 +228,17 @@ public class Hexagone implements Observable {
 	//initialise le poids de chaque trou
 	public void initPoids()
 	{
-//		int N=100;
-//		
-//		for(int v=0;v<6;v++)
-//		{
-//			for(int c=v;c<toute.length-v;c++)
-//			{
-//				for(int k=v;k<toute[c].length-v;k++)
-//					toute[c][k].setPoid(N*v);
-//			}
-//			
-//		}
+		int N=100;
+		
+		for(int v=0;v<6;v++)
+		{
+			for(int c=v;c<toute.length-v;c++)
+			{
+				for(int k=v;k<toute[c].length-v;k++)
+					toute[c][k].setPoid(N*v);
+			}
+			
+		}
 		
 	}
 	
@@ -473,7 +473,7 @@ public class Hexagone implements Observable {
 	}
 	
 	public ArrayList<Boule> getPion() {
-		return BoulesEnJeu;
+		return BoulesSelectionees;
 	}
 
 

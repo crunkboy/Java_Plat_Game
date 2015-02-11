@@ -55,31 +55,32 @@ public class Joueur implements Cloneable {
 		System.out.println("click sur boule "+id);
 		if(getBoule(id)!=null && tableDjeu.nbSelect==0)
 		{
-			if(tableDjeu.BoulesEnJeu.contains(getBoule(id))) //si elle existe déja on l'a sort
-				{	
-							System.out.println("oté");
-							tableDjeu.BoulesEnJeu.remove(getBoule(id));
-							tableDjeu.nbSelect--;
-							tableDjeu.NotifyObserver(false, id);
-							return true;
-				}
-			else		//sinon on l'ajoute
-				{
-					System.out.println("ajouté");
-					tableDjeu.BoulesEnJeu.add(getBoule(id));
+//			if(tableDjeu.BoulesSelectionees.contains(getBoule(id))) //si elle existe déja on l'a sort
+//				{	
+//							System.out.println("oté");
+//							tableDjeu.BoulesSelectionees.remove(getBoule(id));
+//							tableDjeu.nbSelect--;
+//							tableDjeu.NotifyObserver(false, id);
+//							return true;
+//				}
+//			else		//sinon on l'ajoute
+//				{
+					
+					tableDjeu.BoulesSelectionees.add(getBoule(id));
+					System.out.println("ajouté!");
 					tableDjeu.nbSelect++;
 					tableDjeu.NotifyObserver(true, id);
 					return true;
-				}
+//				}
 		}
 			
 		//s'il y'a déja une boule et qu'on veut en selectioné pour le deplacement latérale
 		else if(getBoule(id)!=null && (tableDjeu.nbSelect>0 && tableDjeu.nbSelect<3) )
 		{
-			if(tableDjeu.BoulesEnJeu.contains(getBoule(id)))
+			if(tableDjeu.BoulesSelectionees.contains(getBoule(id)))
 			{	
-						//System.out.println("oté");
-						tableDjeu.BoulesEnJeu.remove(getBoule(id));
+						System.out.println("oté");
+						tableDjeu.BoulesSelectionees.remove(getBoule(id));
 						tableDjeu.nbSelect--;
 						tableDjeu.NotifyObserver(false, id);
 						return true;
@@ -87,11 +88,11 @@ public class Joueur implements Cloneable {
 			else
 			{
 				//on ajoute et on vérifie l'alignement
-				tableDjeu.BoulesEnJeu.add(getBoule(id));
+				tableDjeu.BoulesSelectionees.add(getBoule(id));
 				tableDjeu.nbSelect++;
 				if(!alignement())
 				{
-					tableDjeu.BoulesEnJeu.remove(getBoule(id));
+					tableDjeu.BoulesSelectionees.remove(getBoule(id));
 					tableDjeu.nbSelect--;
 					//System.out.println("les boules ne sont pas aligné ou ne sont pas du meme joueur");
 					return false;
@@ -110,17 +111,17 @@ public class Joueur implements Cloneable {
 		}
 		else if(tableDjeu.nbSelect==3)
 		{
-			if(tableDjeu.BoulesEnJeu.contains(getBoule(id)))
+			if(tableDjeu.BoulesSelectionees.contains(getBoule(id)))
 			{	
-						//System.out.println("oté");
-						tableDjeu.BoulesEnJeu.remove(getBoule(id));
+						System.out.println("oté");
+						tableDjeu.BoulesSelectionees.remove(getBoule(id));
 						tableDjeu.nbSelect--;
 						tableDjeu.NotifyObserver(false, id);
 						return true;
 			}
 			else
 			{
-				//System.out.println("nombre max de boule atteint");
+				System.out.println("nombre max de boule atteint");
 				return false;
 				
 			}
@@ -491,7 +492,7 @@ public boolean  alignement()
 	int direction=-1;
 		for(int j=0;j<6;j++)//la 2èm boule doit ètr dan l'un des voisin,de mm propriétair k la boule selectioné et de mm couleur
 			{
-				if((tableDjeu.BoulesEnJeu.get(1).getTrou().equals(tableDjeu.BoulesEnJeu.get((0)).getTrou().voisinage[j])) && (tableDjeu.BoulesEnJeu.get(1).getColor()==tableDjeu.BoulesEnJeu.get((0)).getColor()))
+				if((tableDjeu.BoulesSelectionees.get(1).getTrou().equals(tableDjeu.BoulesSelectionees.get((0)).getTrou().voisinage[j])) && (tableDjeu.BoulesSelectionees.get(1).getColor()==tableDjeu.BoulesSelectionees.get((0)).getColor()))
 					{
 						result=true;
 						direction=j;
@@ -503,14 +504,14 @@ public boolean  alignement()
 			result=false;
 			if(direction==0 || direction==1 || direction==2)
 				{
-					if((tableDjeu.BoulesEnJeu.get(2).getTrou().equals(tableDjeu.BoulesEnJeu.get((1)).getTrou().voisinage[direction])) && (tableDjeu.BoulesEnJeu.get(2).getColor()==tableDjeu.BoulesEnJeu.get((1)).getColor())
-						|| (tableDjeu.BoulesEnJeu.get(2).getTrou().equals(tableDjeu.BoulesEnJeu.get((0)).getTrou().voisinage[(direction+3)])) && (tableDjeu.BoulesEnJeu.get(2).getColor()==tableDjeu.BoulesEnJeu.get((0)).getColor()))
+					if((tableDjeu.BoulesSelectionees.get(2).getTrou().equals(tableDjeu.BoulesSelectionees.get((1)).getTrou().voisinage[direction])) && (tableDjeu.BoulesSelectionees.get(2).getColor()==tableDjeu.BoulesSelectionees.get((1)).getColor())
+					|| (tableDjeu.BoulesSelectionees.get(2).getTrou().equals(tableDjeu.BoulesSelectionees.get((0)).getTrou().voisinage[(direction+3)])) && (tableDjeu.BoulesSelectionees.get(2).getColor()==tableDjeu.BoulesSelectionees.get((0)).getColor()))
 					result=true;
 				}
 			else
 			{
-				if((tableDjeu.BoulesEnJeu.get(2).getTrou().equals(tableDjeu.BoulesEnJeu.get((1)).getTrou().voisinage[direction])) && (tableDjeu.BoulesEnJeu.get(2).getColor()==tableDjeu.BoulesEnJeu.get((1)).getColor())
-						|| (tableDjeu.BoulesEnJeu.get(2).getTrou().equals(tableDjeu.BoulesEnJeu.get((0)).getTrou().voisinage[abs(direction-3)])) && (tableDjeu.BoulesEnJeu.get(2).getColor()==tableDjeu.BoulesEnJeu.get((0)).getColor()))
+				if((tableDjeu.BoulesSelectionees.get(2).getTrou().equals(tableDjeu.BoulesSelectionees.get((1)).getTrou().voisinage[direction])) && (tableDjeu.BoulesSelectionees.get(2).getColor()==tableDjeu.BoulesSelectionees.get((1)).getColor())
+						|| (tableDjeu.BoulesSelectionees.get(2).getTrou().equals(tableDjeu.BoulesSelectionees.get((0)).getTrou().voisinage[abs(direction-3)])) && (tableDjeu.BoulesSelectionees.get(2).getColor()==tableDjeu.BoulesSelectionees.get((0)).getColor()))
 					result=true;
 			}
 				
@@ -521,7 +522,7 @@ public boolean  alignement()
 
 public static  boolean testFlèche2(int dir)
 {
-	for(Boule a:tableDjeu.BoulesEnJeu)
+	for(Boule a:tableDjeu.BoulesSelectionees)
 	{
 		if(tableDjeu.règle.getDeplacement(a.getTrou(), dir)!=-1)
 			return false;
