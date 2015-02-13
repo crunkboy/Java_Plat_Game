@@ -8,8 +8,8 @@ public class Boule {
 	
 	private Color couleur;				//couleur de la boule
 	private boolean sortie=false;       //si la boule est toujours dans l'hexagone ou pas
-	private Joueur joueur;				
-	private Trou trou;
+	private Joueur joueur;				//joueur possedant la boule
+	private Trou trou;					//Trou dans lequel se trouve la boule
 	private static int cpteur=0;		//compteur d'attribution d'idBoule
 	private int idBoule;				//identifiant de la boule (unique)
 	private Point PositionBoule;		//emplacement de la boule (trou sur lequel elle se trouve)
@@ -43,13 +43,13 @@ public class Boule {
 	
 	// Getters et Setters
 	
-    public boolean getSortie()    		//ex getEtat
+    public boolean getSortie()    		
     {
 		return sortie;
 	}
     
    
-     public void setSortie(boolean j)   //ex setEtat  
+     public void setSortie(boolean j)    
     {
 		sortie=j;
 	}

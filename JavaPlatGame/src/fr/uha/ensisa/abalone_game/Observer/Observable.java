@@ -4,7 +4,7 @@ import java.awt.Point;
 import java.util.ArrayList;
 
 public interface Observable {
-	public ArrayList<Observateur> list=new ArrayList<Observateur>() ;
+	public ArrayList<Observateur> listObserver=new ArrayList<Observateur>() ;
 	public void addObservateur(Observateur obs);
 	  public void delObserver();
 	  public void NotifyObserver(boolean k,boolean a, Point b, int c);

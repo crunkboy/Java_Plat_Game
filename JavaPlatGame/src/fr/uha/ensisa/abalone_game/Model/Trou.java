@@ -4,12 +4,11 @@ package fr.uha.ensisa.abalone_game.Model;
 import java.awt.Point;
 
 public class Trou{
-	private static int num=0;						////compteur d'attribution d'idBoule (ie Boule.cpteur)
-	private int idTrou; 
+	private static int num=0;						//compteur d'attribution d'idBoule (ie Boule.cpteur)
+	private int idTrou; 							//id du trou
 	private boolean occupied;						//Occupation du trou par une boule
 	private Boule boule;							//boule occupant le trou (si la boule n'est pas)
 	public Trou[] voisinage=new Trou[6];			//6 directions permises pour le déplacement d'une boule
-	private int poid;								//Un poids qui permettra d'évaluer un coup par rapport à un autre
 	private boolean bord;							//pour savoir s'il s'agit d'une cellule bord de l'hexagone
 	private Point PositionTrou;						//coordonnée du trou
 
@@ -70,14 +69,6 @@ public class Trou{
 		this.bord = bord;
 	}
 	
-	public int getPoid() {
-		return poid;
-	}
-	
-	public void setPoid(int poid) {
-		this.poid = poid;
-	}
-	
 	public static int getNum() {
 		return num;
 	}
@@ -93,16 +84,13 @@ public class Trou{
 	public void setIdTrou(int idTrou) {
 		this.idTrou = idTrou;
 	}
-	/**
-	 * @return le positionTrou
-	 */
+	
 	
 	public Point getPositionTrou() {
 		return PositionTrou;
 	}
-	/**
-	 * @param positionTrou le positionTrou à définir
-	 */
+	
+	
 	public void setPositionTrou(Point positionTrou) {
 		PositionTrou = positionTrou;
 	}
@@ -117,8 +105,5 @@ public class Trou{
 	
 	public void setPosition(Point position) {
 		PositionTrou = position;
-	}
-	
-	
-	
+	}	
 }

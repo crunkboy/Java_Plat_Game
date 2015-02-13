@@ -12,7 +12,7 @@ public class Hexagone implements Observable {
 	protected int nbSelect=0;
 	protected ArrayList<Boule> BoulesSelectionees=new ArrayList<Boule>();
 
-	private Joueur [] joueurs=new Joueur[2];             //les 2 joueurs
+	public Joueur [] joueurs=new Joueur[2];             //les 2 joueurs
 	private Boule [][] bouleJoueur1=new Boule[3][];
 	private Boule [][] bouleJoueur2=new Boule[3][];
 	private boolean partieEnd=false;                  //c.a.d si la partie est fini ou pas
@@ -46,7 +46,7 @@ public class Hexagone implements Observable {
 	public void init()
 	{
 		initTrou();
-		initPoids();
+		//initPoids();
 		initVoisinage();
 		//afficher();
 		initBoulej1j2();
@@ -225,23 +225,6 @@ public class Hexagone implements Observable {
 		}
 	}
 	
-	//initialise le poids de chaque trou
-	public void initPoids()
-	{
-		int N=100;
-		
-		for(int v=0;v<6;v++)
-		{
-			for(int c=v;c<toute.length-v;c++)
-			{
-				for(int k=v;k<toute[c].length-v;k++)
-					toute[c][k].setPoid(N*v);
-			}
-			
-		}
-		
-	}
-	
 	
 	public void setpartieEnd(boolean v)             
 	{
@@ -280,110 +263,110 @@ public class Hexagone implements Observable {
 	}
 
 	//permet de définir la profondeur d'un coup en flèche dans le cas ou il est possible
-	public int testFlèche(Trou b,int directiondeplacement,int directionVoisin)
-	{
-		Trou ctmp=b.voisinage[directionVoisin];
-		if(ctmp.getBord()==false)
-		{
-			if(ctmp.getOccupied()==true && ctmp.getBoule().getJoueur().equals(b.getBoule().getJoueur()))
-			{
-					if(règle.getDeplacement(ctmp,directiondeplacement)==-1)																							//Début
-					{
-						ctmp=ctmp.voisinage[directionVoisin];
-						if(ctmp.getBord()==false)
-						{
-							if(ctmp.getOccupied()==true && ctmp.getBoule().getJoueur().equals(b.getBoule().getJoueur()))
-							{
-								if(règle.getDeplacement(ctmp,directiondeplacement)==-1)
-									return 3;
-							}
-							else
-								return 2;
-						}
-						else
-							return 2;
-					}	
-					else
-						return -20;
-				}
-				else 
-					return -20;
-				}
-			return -20;
-			}
+//	public int testFlèche(Trou b,int directiondeplacement,int directionVoisin)
+//	{
+//		Trou ctmp=b.voisinage[directionVoisin];
+//		if(ctmp.getBord()==false)
+//		{
+//			if(ctmp.getOccupied()==true && ctmp.getBoule().getJoueur().equals(b.getBoule().getJoueur()))
+//			{
+//					if(règle.getDeplacement(ctmp,directiondeplacement)==-1)																							//Début
+//					{
+//						ctmp=ctmp.voisinage[directionVoisin];
+//						if(ctmp.getBord()==false)
+//						{
+//							if(ctmp.getOccupied()==true && ctmp.getBoule().getJoueur().equals(b.getBoule().getJoueur()))
+//							{
+//								if(règle.getDeplacement(ctmp,directiondeplacement)==-1)
+//									return 3;
+//							}
+//							else
+//								return 2;
+//						}
+//						else
+//							return 2;
+//					}	
+//					else
+//						return -20;
+//				}
+//				else 
+//					return -20;
+//				}
+//			return -20;
+//			}
 	
 	
 	 //permet a l'IA de jouer un coup 
-	public void joue(Boule b,int direction,int nTypeDeplacement)                               
-	{
-		
-		switch(nTypeDeplacement)                                
-			{ 
-			case -1:/*System.out.println("je joue la boule "+b.getIdBoule()+" se trouvant dans le trou "+b.getTrou().getIdTrou()+" en deplacer_1 dans la direction "+direction)*/;règle.deplacer_1(b,direction);break;
-			case -2:/*System.out.println("je joue la boule "+b.getIdBoule()+" se trouvant dans le trou "+b.getTrou().getIdTrou()+" en deplacer_2 dans la direction "+direction)*/;règle.deplacer_2(b,direction);break;
-			case -3:/*System.out.println("je joue la boule "+b.getIdBoule()+" se trouvant dans le trou "+b.getTrou().getIdTrou()+" en deplacer_3 dans la direction "+direction)*/;règle.deplacer_3(b,direction);break;
-			case -4:/*System.out.println("je joue la boule "+b.getIdBoule()+" se trouvant dans le trou "+b.getTrou().getIdTrou()+" en pousser_2_1 dans la direction "+direction)*/;règle.pousser_2_1(b,direction);break;
-			case -5:/*System.out.println("je joue la boule "+b.getIdBoule()+" se trouvant dans le trou "+b.getTrou().getIdTrou()+" en pousser_3_1 dans la direction "+direction)*/;règle.pousser_3_1(b,direction);break;
-			case -6:/*System.out.println("je joue la boule "+b.getIdBoule()+" se trouvant dans le trou "+b.getTrou().getIdTrou()+" en pousser_3_2 dans la direction "+direction)*/;règle.pousser_3_2(b,direction);break;
-			case -7:/*System.out.println("je joue la boule "+b.getIdBoule()+" se trouvant dans le trou "+b.getTrou().getIdTrou()+" en manger_2_1 dans la direction "+direction)*/;règle.manger_2_1(b,direction);break;
-			case -8:/*System.out.println("je joue la boule "+b.getIdBoule()+" se trouvant dans le trou "+b.getTrou().getIdTrou()+" en manger_3_1 dans la direction "+direction)*/;règle.manger_3_1(b,direction);break;
-			case -9:/*System.out.println("je joue la boule "+b.getIdBoule()+" se trouvant dans le trou "+b.getTrou().getIdTrou()+" en manger_3_2 dans la direction "+direction)*/;règle.manger_3_2(b,direction);break;
-			default: /*System.out.println("erreur dans joue()")*/;
-			}
-		
-	}
+//	public void joue(Boule b,int direction,int nTypeDeplacement)                               
+//	{
+//		
+//		switch(nTypeDeplacement)                                
+//			{ 
+//			case -1:/*System.out.println("je joue la boule "+b.getIdBoule()+" se trouvant dans le trou "+b.getTrou().getIdTrou()+" en deplacer_1 dans la direction "+direction)*/;règle.deplacer_1(b,direction);break;
+//			case -2:/*System.out.println("je joue la boule "+b.getIdBoule()+" se trouvant dans le trou "+b.getTrou().getIdTrou()+" en deplacer_2 dans la direction "+direction)*/;règle.deplacer_2(b,direction);break;
+//			case -3:/*System.out.println("je joue la boule "+b.getIdBoule()+" se trouvant dans le trou "+b.getTrou().getIdTrou()+" en deplacer_3 dans la direction "+direction)*/;règle.deplacer_3(b,direction);break;
+//			case -4:/*System.out.println("je joue la boule "+b.getIdBoule()+" se trouvant dans le trou "+b.getTrou().getIdTrou()+" en pousser_2_1 dans la direction "+direction)*/;règle.pousser_2_1(b,direction);break;
+//			case -5:/*System.out.println("je joue la boule "+b.getIdBoule()+" se trouvant dans le trou "+b.getTrou().getIdTrou()+" en pousser_3_1 dans la direction "+direction)*/;règle.pousser_3_1(b,direction);break;
+//			case -6:/*System.out.println("je joue la boule "+b.getIdBoule()+" se trouvant dans le trou "+b.getTrou().getIdTrou()+" en pousser_3_2 dans la direction "+direction)*/;règle.pousser_3_2(b,direction);break;
+//			case -7:/*System.out.println("je joue la boule "+b.getIdBoule()+" se trouvant dans le trou "+b.getTrou().getIdTrou()+" en manger_2_1 dans la direction "+direction)*/;règle.manger_2_1(b,direction);break;
+//			case -8:/*System.out.println("je joue la boule "+b.getIdBoule()+" se trouvant dans le trou "+b.getTrou().getIdTrou()+" en manger_3_1 dans la direction "+direction)*/;règle.manger_3_1(b,direction);break;
+//			case -9:/*System.out.println("je joue la boule "+b.getIdBoule()+" se trouvant dans le trou "+b.getTrou().getIdTrou()+" en manger_3_2 dans la direction "+direction)*/;règle.manger_3_2(b,direction);break;
+//			default: /*System.out.println("erreur dans joue()")*/;
+//			}
+//		
+//	}
 	
 	//back-tracking annule joue()
-	 public void Dejoue (Trou pintPion,int nDirection,int nTypeDeplacement)           
-	 {
-	    	switch(nTypeDeplacement)
-	    	{
-	    	 	case -1:
-	    	 	case -2:
-	    	 	case -3:/*System.out.println("je ramène dans le trou "+pintPion.getIdTrou()+" la boule "+pintPion.voisinage[nDirection].getBoule().getIdBoule()+" en retour deplacerN")*/;deplaceNPion(pintPion,abs(nTypeDeplacement),nDirection);break;
-	    	 	case -4:
-	    	 	case -5:
-	    	 	case -6:/*System.out.println("je ramène dans le trou "+pintPion.getIdTrou()+" la boule "+pintPion.voisinage[nDirection].getBoule().getIdBoule()+" en retour pousserN")*/;deplaceNPion(pintPion,abs(nTypeDeplacement)-1,nDirection);break;
-	    	 	case -7:
-	    	 	case -8:
-	    	 	case -9:/*System.out.println("je ramène dans le trou "+pintPion.getIdTrou()+" la boule "+pintPion.voisinage[nDirection].getBoule().getIdBoule()+" en retour mangerN")*/;deplaceNPion(pintPion,abs(nTypeDeplacement)-5,nDirection);break;
-	    	}
-
-	 }
+//	 public void Dejoue (Trou pintPion,int nDirection,int nTypeDeplacement)           
+//	 {
+//	    	switch(nTypeDeplacement)
+//	    	{
+//	    	 	case -1:
+//	    	 	case -2:
+//	    	 	case -3:/*System.out.println("je ramène dans le trou "+pintPion.getIdTrou()+" la boule "+pintPion.voisinage[nDirection].getBoule().getIdBoule()+" en retour deplacerN")*/;deplaceNPion(pintPion,abs(nTypeDeplacement),nDirection);break;
+//	    	 	case -4:
+//	    	 	case -5:
+//	    	 	case -6:/*System.out.println("je ramène dans le trou "+pintPion.getIdTrou()+" la boule "+pintPion.voisinage[nDirection].getBoule().getIdBoule()+" en retour pousserN")*/;deplaceNPion(pintPion,abs(nTypeDeplacement)-1,nDirection);break;
+//	    	 	case -7:
+//	    	 	case -8:
+//	    	 	case -9:/*System.out.println("je ramène dans le trou "+pintPion.getIdTrou()+" la boule "+pintPion.voisinage[nDirection].getBoule().getIdBoule()+" en retour mangerN")*/;deplaceNPion(pintPion,abs(nTypeDeplacement)-5,nDirection);break;
+//	    	}
+//
+//	 }
 	 
 	 
-	 public void deplaceNPion(Trou dep,int nbPion,int direction)
-	 {
-		 Trou Ctmp=dep;
-		 for(int i=0;i<nbPion;i++)
-		 {
-			 Trou cv=règle.getVoisin(Ctmp,direction);
-			 cv.getBoule().setTrou(Ctmp);
-			 Ctmp=cv;
-		 }
-	 }
-	 
+//	 public void deplaceNPion(Trou dep,int nbPion,int direction)
+//	 {
+//		 Trou Ctmp=dep;
+//		 for(int i=0;i<nbPion;i++)
+//		 {
+//			 Trou cv=règle.getVoisin(Ctmp,direction);
+//			 cv.getBoule().setTrou(Ctmp);
+//			 Ctmp=cv;
+//		 }
+//	 }
+//	 
 	
 	 
 	//permet d'evaluer un coup par raport a l'ensbl du jeu pour l'IA
-	 public int fctEval(Joueur IA)                
-		{
-			IA.calculPoidJoueurs();
-			return IA.getPoid();
-		}  
-	 
-	 
-	 public int abs(int a)
-	 {
-		 if(a>0)
-			 return a;
-		 else
-			 return (-a);
-	 }
+//	 public int fctEval(Joueur IA)                
+//		{
+//			IA.calculPoidJoueurs();
+//			return IA.getPoid();
+//		}  
+//	 
+//	 
+//	 public int abs(int a)
+//	 {
+//		 if(a>0)
+//			 return a;
+//		 else
+//			 return (-a);
+//	 }
 
 	@Override
 	public void addObservateur(Observateur obs) {
-		list.add(obs);
+		listObserver.add(obs);
 		
 	}
 
@@ -391,7 +374,7 @@ public class Hexagone implements Observable {
 	@Override
 	public void delObserver() {
 		
-		list.removeAll(list);	
+		listObserver.removeAll(listObserver);	
 	}
 	
 	public void jouer()
@@ -419,23 +402,6 @@ public class Hexagone implements Observable {
 	}
 	public void setBouleJoueur2(Boule [][] bouleJoueur2) {
 		this.bouleJoueur2 = bouleJoueur2;
-	}
-	@Override
-	public void NotifyObserver(boolean l, boolean a, Point b, int c) 
-	{
-		 for(Observateur a1:list)
-		{
-			a1.update(l,a,b,c);
-		}
-		
-	}
-	@Override
-	public void NotifyObserver(boolean a,int id) {
-		
-		for(Observateur a1:list)
-		{
-			a1.update(a,id);
-		}
 	}
 	
 	public Boule getBouleByID(int id)
@@ -472,15 +438,32 @@ public class Hexagone implements Observable {
 		return null;
 	}
 	
-	public ArrayList<Boule> getPion() {
+	public ArrayList<Boule> getBoulesSelectionees() {
 		return BoulesSelectionees;
 	}
-
-
+	
+	@Override
+	public void NotifyObserver(boolean l, boolean a, Point b, int c) 
+	{
+		 for(Observateur a1:listObserver)
+		{
+			a1.update(l,a,b,c);
+		}
+		
+	}
+	@Override
+	public void NotifyObserver(boolean a,int id) {
+		
+		for(Observateur a1:listObserver)
+		{
+			a1.update(a,id);
+		}
+	}
+	
 
 	@Override
 	public void NotifyObserver(String a,String b,int a1,int b1) {
-		for(Observateur a11:list)
+		for(Observateur a11:listObserver)
 		{
 			a11.update(a,b,a1,b1);
 		}
