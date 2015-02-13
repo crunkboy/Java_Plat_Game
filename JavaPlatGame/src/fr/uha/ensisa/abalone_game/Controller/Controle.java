@@ -30,13 +30,10 @@ import fr.uha.ensisa.abalone_game.Model.Trou;
 public class Controle implements KeyListener, MouseListener, ActionListener {
 
 	private static Partie a;
-	private boolean b = false;
 	private static View a1;
-	private static int[] jou1 = new int[2];
-	private int[][] j1 = new int[14][2];
+	private static int[] joueurs = new int[2];
+	private int[][] j1 = new int[14][2]; //matrice des ids boule/trou
 	private int[][] j2 = new int[14][2];
-
-	// private int directionCLIC;
 
 	// events associated with ball movements using keypress,
 	@Override
@@ -74,9 +71,9 @@ public class Controle implements KeyListener, MouseListener, ActionListener {
 
 	public void b1Selected(int direction) // lorsque 1e boule est selectionné
 	{
-		b = Joueur.deplacer(a.table.getBoulesSelectionees().get(0), direction);
+		boolean depl = Joueur.deplacer(a.table.getBoulesSelectionees().get(0), direction);
 		// déplacement a été effectué
-		if (b == true) {
+		if (depl == true) {
 			// rendre toute les bouleJoueur2 inactif et changer de joueur
 			a.table.jouer();
 			a.table.setNbSelect(0);
@@ -234,11 +231,11 @@ public class Controle implements KeyListener, MouseListener, ActionListener {
 	public void save() {
 		int i = 0;
 		if (a.table.getTour().equals(a.j1)) {
-			jou1[0] = -2;
-			jou1[1] = -1;
+			joueurs[0] = -2;
+			joueurs[1] = -1;
 		} else {
-			jou1[1] = -2;
-			jou1[0] = -1;
+			joueurs[1] = -2;
+			joueurs[0] = -1;
 		}
 
 		for (Boule[] c : a.table.BouleJoueur1()) {
@@ -256,12 +253,12 @@ public class Controle implements KeyListener, MouseListener, ActionListener {
 				i++;
 			}
 		}
-		write_Fichier(j1, j2, jou1, "save.txt");
+		write_Fichier(j1, j2, joueurs, "save.txt");
 	}
 
 	public void load() {
 
-		read_Fichier(j1, j2, jou1, "save.txt");
+		read_Fichier(j1, j2, joueurs, "save.txt");
 
 		for (Boule[] v : a.table.BouleJoueur1()) {
 			for (Boule d : v) {
@@ -281,21 +278,24 @@ public class Controle implements KeyListener, MouseListener, ActionListener {
 			}
 		}
 
-		if (jou1[1] == -1 && jou1[0] == -2) // tour du joueur1
+		if (joueurs[1] == -1 && joueurs[0] == -2) // tour du joueur1(rouge)
 		{
 			a.table.setTour(a.j1);
 			a.table.jouer();
 			a.table.jouer();
+			System.out.println("\nle joueur rouge commence");
 
 		} 
-		else if (jou1[1] == -2 && jou1[0] == -1) //tour du joueur2
+		else if (joueurs[1] == -2 && joueurs[0] == -1) //tour du joueur2(bleu)
 		{
 			a.table.setTour(a.j2);
 			a.table.jouer();
 			a.table.jouer();
+			System.out.println("\nle joueur bleu commence");
 		}
-			System.out.println("\nproblème de chargement");
-
+		else
+			System.out.println("\nProblème de chargement");
+			
 	}
 
 	public void write_Fichier(int[][] joueur_1, int[][] joueur_2, int[] j_1, String nomFichier) {

@@ -208,7 +208,9 @@ public Hexagone getTable()
 	return tableDjeu;
 }
 
-
+public void setTableDjeu(Hexagone table) {
+	tableDjeu = table;
+}
 
 
 public boolean  alignement()          
@@ -284,12 +286,5 @@ public static boolean  deplacer(Boule b,int direction)
 			
 	return done;
 }
-
-
-
-
-	public void setTableDjeu(Hexagone table) {
-		tableDjeu = table;
-	}
 
 }

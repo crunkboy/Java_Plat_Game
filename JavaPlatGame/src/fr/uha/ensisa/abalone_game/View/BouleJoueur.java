@@ -12,8 +12,8 @@ import fr.uha.ensisa.abalone_game.Controller.Controle;
 
 @SuppressWarnings("serial")
 public class BouleJoueur extends JButton {
-	// cptuer is used for assigning the id of each of the boules placed on the
-	// board and also a a counter to the number of boules on the board
+	// cpteur is used for assigning the id of each of the boules placed on the
+	// board and also a counter to the number of boules on the board
 	private static int cpteur = 0;
 	public int id;
 	public Point point;

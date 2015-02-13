@@ -50,7 +50,7 @@ public class Trou{
 		return occupied;
 	}
 	
-	public void setOccupied(boolean a)                //changer l'etat d'ocupation  du trou avec une valeur
+	public void setOccupied(boolean a)			//changer l'etat d'ocupation  du trou avec une valeur
 	{
 		occupied=a;
 	}
@@ -61,7 +61,7 @@ public class Trou{
 		this.voisinage = voisinage;
 	}
 	
-	public boolean getBord() {             //on veut savoir si le trou est un bord ou pas
+	public boolean getBord() {					//on veut savoir si le trou est un bord ou pas
 		return bord;
 	}
 	
